@@ -41,9 +41,11 @@ def load_model():
 
 parser = argparse.ArgumentParser(description='Configuration options')
 parser.add_argument('--device_type', type=str, help='device to run on, select gpu or cpu')
+parser.add_argument('--port', type=str, help='port to run server on', default=8080)
 args = parser.parse_args()
 
 device_type = args.device_type
+server_port = args.port
 
 if device_type in ['cpu', 'CPU']:
     device='cpu'
@@ -83,7 +85,7 @@ def process_query(query: str):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8080)
+    uvicorn.run(app, host="0.0.0.0", port=server_port)
 
 
 if __name__ == "__main__":
